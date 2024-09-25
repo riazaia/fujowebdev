@@ -66,6 +66,21 @@ for (const proj in PROJECTS) {
   </div>
 </PageLayout>
 <style>
+  .tabs label:first-of-type {
+    border-top-left-radius: 25px;
+    border-bottom-left-radius: 25px;
+  }
+
+  .tabs label:last-of-type {
+    border-top-right-radius: 25px;
+    border-bottom-right-radius: 25px;
+    border: none;
+  }
+
+  .tabs label:hover {
+    background: var(--fujo-red);
+  }
+
   :global(h1) {
     margin-bottom: 0;
   }
@@ -82,12 +97,14 @@ for (const proj in PROJECTS) {
     color: var(--fujo-cream);
     cursor: pointer;
     display: block;
-    margin: 0.3rem;
+    margin: 0.3rem 0;
     font-weight: 700;
     padding: 0.5rem 1rem;
     transition: background ease 0.3s;
     width: auto;
     order: 1;
+    border-right: 1px solid var(--fujo-cream);
+    border-radius: 0px;
   }
   .tabs .tab-content {
     display: none;
