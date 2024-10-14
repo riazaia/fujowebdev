@@ -33,6 +33,26 @@ const projectsArray = Object.keys(PROJECTS).map((proj) => ({
     are the people whose hard work makes FujoGuide possible.
   </div>
   <div class="tabs">
+    <input type="radio" name="tab" id="all-projects" checked={false} />
+    <label for="all-projects">All projects</label>
+    <div class="tab-content" id={`content-all-projects`}>
+      {
+        team.map((member) => {
+          return (
+            <TeamMemberCard
+              transition:name="artist"
+              transition:animate="slide"
+              transition:persist
+              memberId={member.id}
+              name={member.data.name}
+              avatar={member.data.avatar}
+              roles={member.data.roles}
+              contacts={member.data.contacts}
+            />
+          );
+        })
+      }
+    </div>
     {
       projectsArray.map((project, index) => {
         // Exclude from members with card people that have exclusively done beta reading
@@ -82,60 +102,60 @@ const projectsArray = Object.keys(PROJECTS).map((proj) => ({
       })
     }
   </div>
+  <style>
+    :global(h1) {
+      margin-bottom: 0;
+    }
+    .tabs {
+      display: flex;
+      flex-wrap: wrap;
+      margin: 0 auto;
+      justify-content: center;
+      align-items: center;
+    }
+
+    .tabs label {
+      background: var(--fujo-pink);
+      color: var(--fujo-cream);
+      cursor: pointer;
+      display: block;
+      margin: 0.3rem;
+      font-weight: 700;
+      padding: 0.5rem 1rem;
+      transition: background ease 0.3s;
+      width: auto;
+      order: 1;
+    }
+    .tabs .tab-content {
+      display: none;
+      margin-top: 1rem;
+      padding: 0 1rem;
+      order: 99;
+    }
+
+    .tabs input[type="radio"] {
+      display: none;
+    }
+
+    .tabs input[type="radio"]:checked + label {
+      background: var(--fujo-red);
+      color: var(--fujo-cream);
+    }
+
+    .tabs input[type="radio"]:checked + label + .tab-content {
+      display: block;
+    }
+
+    .beta-readers {
+      text-align: center;
+      margin: 0 auto;
+      margin-top: 40px;
+      font-size: 1.17em;
+    }
+
+    .description {
+      text-align: center;
+      max-width: 540px;
+    }
+  </style>
 </PageLayout>
-<style>
-  :global(h1) {
-    margin-bottom: 0;
-  }
-  .tabs {
-    display: flex;
-    flex-wrap: wrap;
-    margin: 0 auto;
-    justify-content: center;
-    align-items: center;
-  }
-
-  .tabs label {
-    background: var(--fujo-pink);
-    color: var(--fujo-cream);
-    cursor: pointer;
-    display: block;
-    margin: 0.3rem;
-    font-weight: 700;
-    padding: 0.5rem 1rem;
-    transition: background ease 0.3s;
-    width: auto;
-    order: 1;
-  }
-  .tabs .tab-content {
-    display: none;
-    margin-top: 1rem;
-    padding: 0 1rem;
-    order: 99;
-  }
-
-  .tabs input[type="radio"] {
-    display: none;
-  }
-
-  .tabs input[type="radio"]:checked + label {
-    background: var(--fujo-red);
-    color: var(--fujo-cream);
-  }
-
-  .tabs input[type="radio"]:checked + label + .tab-content {
-    display: block;
-  }
-
-  .beta-readers {
-    text-align: center;
-    margin: 0 auto;
-    margin-top: 40px;
-    font-size: 1.17em;
-  }
-
-  .description {
-    text-align: center;
-    max-width: 540px;
-  }
-</style>
